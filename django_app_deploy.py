@@ -11,8 +11,8 @@ class Django_Heroku_Deploy:
         self.filename="settings.py"
         #Install Required Packages
         self.modules=["django","django-heroku","heroku","gunicorn"]
-        #for m in self.modules:
-         #   self.install(m)
+        for m in self.modules:
+            self.install(m)
         self.update_settings()
 
         os.chdir("..")
@@ -21,7 +21,8 @@ class Django_Heroku_Deploy:
         self.update_procfile() 
     
     def install(self,package):
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        print(package,"Installing.....")
+        subprocess.call("pip install "+package)
 
     def update_requirements(self):
         #Fetch all the modules and dumpp it to requirements.txt
