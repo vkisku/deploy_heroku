@@ -1,15 +1,20 @@
 #Code to Configure Settings.py for deployment onto heroku
+import os
 import sys
 import subprocess
 filename="settings.py"
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
+
+#Install Required Packages
 modules=["django","django-heroku","heroku","gunicorn"]
 for m in modules:
     install(m)
  
-import os
+
+#Fetch all the modules and dumpp it to requirements.txt
+subprocess.call("pip freeze > requirements.txt", shell=True)
 
 with open(filename, "r+") as f:
     line_found = any("django_heroku.settings(locals())" in line for line in f)
