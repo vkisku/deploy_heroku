@@ -2,13 +2,23 @@
 
 ## How to Run the Django App deployment to heroku
 
-- download django_app_deploy.py
-- copy and paste the file to the folder where manage.py exists
-- Run the command
+- Fork and download the project
+- And Run the code start.py
+
+      workon <virtual env name> & py start.py
+
+    or
     
-      py django_app_deploy.py <projectname>
-      
- project name is optional though
- 
- ![](giphy.gif)
- 
+        py start.py
+        
+        
+## How to Install Required MysqlClient
+
+- Copy the install.py code to ur Django project
+- Activate your virtual env(Optional)
+- Run the code
+
+        py install.py mysqlclient
+        
+        
+        
