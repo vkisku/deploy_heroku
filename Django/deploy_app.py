@@ -26,8 +26,8 @@ class App:
 		OptionList.insert(0,self.envirormentName)
 		self.variable = StringVar()
 		self.variable.set(OptionList[0]) # default value
-		self.label3 = Label(self.window,text="Virtual Environment").place(x=10,y=90)
-		self.environmentOptions = OptionMenu(self.window, self.variable, *OptionList,command=self.get_environment_name).place(x=130,y=90)
+		#self.label3 = Label(self.window,text="Virtual Environment").place(x=10,y=90)
+		#self.environmentOptions = OptionMenu(self.window, self.variable, *OptionList,command=self.get_environment_name).place(x=130,y=90)
 
 		self.label3 = Label(self.window,text="Project Folder").place(x=10,y=130)
 		self.folderbutton = Button(self.window,text="Browse Folder",width=12,height=1,command=self.get_dirname).place(x=120,y=130)
