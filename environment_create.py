@@ -22,6 +22,7 @@ class App:
 		self.label1 = Label(self.window,text="1. Enter the Name of the Unique Virtual Environment").place(x=10,y=50)
 		self.label2 = Label(self.window,text="2.Press Create").place(x=10,y=70)
 		self.label2 = Label(self.window,text="Environment Name:").place(x=10,y=90)
+		
 		self.environment=StringVar()
 		self.EnvironmentEntry = Entry(self.window,textvariable = self.environment,width=20).place(x=155,y=90)
 		self.folderSuccess = StringVar()
@@ -29,6 +30,12 @@ class App:
 
 		self.folderLabelSuccess = Label(self.window, fg='green', textvariable=self.folderSuccess).place(x=150,y=90)
 		self.folderLabelError 	= Label(self.window, fg='red', textvariable=self.folderError).place(x=150,y=90)
+		
+		OptionList =self.list_virtual_env()
+		OptionList=OptionList[2:]
+		self.variable = StringVar()
+		self.variable.set(OptionList[0]) # default value
+		self.environmentOptions = OptionMenu(self.window, self.variable, *OptionList,command=self.get_environment_name).place(x=10,y=110)
 		self.deploybutton = Button(self.window,text="Create",width=12,height=1,command=self.list_virtual_env).place(x=190,y=130)
 
 		self.menubar = Menu(self.window)
@@ -60,10 +67,14 @@ class App:
 		vlist=[x for x in vlist if x]
 		#vlist=set(vlist)
 		print(vlist)
-		if self.environment.get() in vlist:
-			messagebox.showinfo('Alert','Environment ALready Exits.')
+		return vlist
+		#if self.environment.get() in vlist:
+		#	messagebox.showinfo('Alert','Environment ALready Exits.')
 
-	
+	def get_environment_name(self,value):
+		print(value)
+		return value
+
 	def create(self):
 		if(not(self.environment.get() and (self.environment.get()).strip())):
 			messagebox.showinfo("Alert", "Enter The environment name!")
@@ -108,4 +119,4 @@ class App:
 		messagebox.showinfo("Save Changes", "Changes Successfull saved!")	
 
 
-App(Tk(), "Deploy Django App",0)
+App(Tk(), "Virtual Environment Create",0)

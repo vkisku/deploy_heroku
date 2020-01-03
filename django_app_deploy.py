@@ -3,7 +3,9 @@ import os
 import sys
 import subprocess
 class Django_Heroku_Deploy:
-    def __init__(self, folder):
+    def __init__(self, folder,environment=None):
+        print(environment)
+        self.enter_into_virtual_env(environment)
         self.folder=str(folder)
         print('Folder Name',self.folder)
         os.chdir(self.folder)
@@ -11,8 +13,8 @@ class Django_Heroku_Deploy:
         self.filename="settings.py"
         #Install Required Packages
         self.modules=["django","django-heroku","heroku","gunicorn"]
-        for m in self.modules:
-            self.install(m)
+        #for m in self.modules:
+         #   self.install(m)
         self.update_settings()
 
         os.chdir("..")
@@ -20,6 +22,13 @@ class Django_Heroku_Deploy:
         self.update_requirements()
         self.update_procfile() 
     
+    def enter_into_virtual_env(self,environment):
+        if environment is not None:
+            if environment is not "None":
+                print('Virtual environment Activating....')
+                subprocess.call('workon '+environment,shell=True)
+
+
     def install(self,package):
         print(package,"Installing.....")
         subprocess.call("pip install "+package)
@@ -28,6 +37,15 @@ class Django_Heroku_Deploy:
         #Fetch all the modules and dumpp it to requirements.txt
         print('Requirements Updating...')
         subprocess.call("pip freeze > requirements.txt", shell=True)
+
+    def list_virtual_env(self):
+        vlist=subprocess.check_output("lsvirtualenv",shell=True)
+        vlist=vlist.decode()
+        vlist=vlist.split('\r\n')
+        vlist=[x for x in vlist if x]
+        #vlist=set(vlist)
+        print(vlist)
+        return vlist    
 
     def update_settings(self):
         print('Settings Updating......')                
