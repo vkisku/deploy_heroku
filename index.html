@@ -5,6 +5,41 @@
   <title>Deploy Heroku</title>
 </head>
 <body>
-<h1>Heroku Deploy </h1>
+<h1>Manual Steps to Deploy Django Project on Heroku</h1>
+  You need to install some dependencies before doing anything
+  <ol>
+  <li>Activate your Virtual Environment(Optional)</li>
+  <li>Install the following Dependencies<br>
+      <ol>
+      <li>pip install django</li>
+       <li>pip install django-heroku</li>
+        <li>pip install heroku</li>
+        <li>pip install gunicorn</li>
+      </ol>
+    </li>
+  </ol>
+  Now, You Will have do some configurations
+  <ol>
+    <li>Open you project directory</li>
+    <li>Create a file named 'Procfile' without Extension and Open it</li>
+    <li>Type <b>web gunicorn projectname.wsgi --log-file -</b></li>
+    <li>Then, Open settings.py
+      <ol>
+        <li>At the top type <b>import django_heroku</b></li>
+        <li>At the bottom type <b>django_heroku.settings(locals())</b></li>
+      </ol>
+    </li>
+    Now the configuration has almost been done.
+    just update requirements.txt using <b>pip freeze>requirements.txt</b>
+    <br>
+    Then, To deloy your app to heroku run following commands in your terminal
+    <ol>
+      <li>heroku login</li>
+      <li>git init(Optional)</li>
+      <li>git add .</li>
+      <li>git commit -m "your message"</li>
+      <li>git push heroku master</li>
+    </ol>
+  </ol>
 </body>
 </html>
